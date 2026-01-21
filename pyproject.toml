@@ -1,6 +1,6 @@
 [project]
 name = "wiki-dump-extractor-json"
-version = "1.0.2"
+version = "1.0.3"
 description = "An efficient Wikipedia XML dump extractor which converts each page to JSON."
 readme = "README.md"
 license = "MIT"
@@ -23,7 +23,7 @@ dependencies = [
 ]
 
 [project.scripts]
-wiki-dump = "wiki_dump.__main__:main"
+wiki-dump-extractor-json = "wiki_dump_extractor_json.__main__:main_cli"
 
 [project.urls]
 Homepage = "https://github.com/ekcbw/wiki-dump-extractor-json"

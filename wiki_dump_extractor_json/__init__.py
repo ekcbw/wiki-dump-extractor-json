@@ -5,7 +5,7 @@ from .dump_xml_parser import parse_xml_dump, WikiPage
 
 __all__ = ["parse_source", "filter_refs", "parse_xml_dump",
            "WikiPage", "lookup_from_extracted"]
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 
 def strip_comments(source: str) -> str:
     return re.sub("<!--.*?-->", "", source)
