@@ -145,7 +145,7 @@ output_directory/
 └── ...
 ```
 Each `.jsonl` file contains one JSON object per line, each representing one Wikipedia article.  
-The format of `index.json` (for details, see [wiki_dump/extractor.py](wiki_dump/extractor.py)):
+The format of `index.json` (for details, see [wiki_dump_extractor_json/extractor.py](wiki_dump_extractor_json/extractor.py)):
 ```json
 {
     "pages": {"Template:Wikipedialang": [0, 0, 0],
