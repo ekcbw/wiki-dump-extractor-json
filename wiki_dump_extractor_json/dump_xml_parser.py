@@ -1,8 +1,8 @@
 import warnings
 from typing import Iterator, TextIO
 from dataclasses import dataclass
-from dateutil.parser import parse as parse_date
 import xml.etree.ElementTree as ET
+from dateutil.parser import parse as parse_date
 
 @dataclass(slots=True)
 class WikiPage:

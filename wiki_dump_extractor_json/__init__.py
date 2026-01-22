@@ -5,7 +5,7 @@ from .dump_xml_parser import parse_xml_dump, WikiPage
 
 __all__ = ["parse_source", "filter_refs", "parse_xml_dump",
            "WikiPage", "lookup_from_extracted"]
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 
 def strip_comments(source: str) -> str:
     return re.sub("<!--.*?-->", "", source)
@@ -39,10 +39,12 @@ def filter_refs(source: str) -> tuple[str, list[str]]:
     return replaced_content, unique_refs
 
 def parse_redirection(source: str) -> str | None:
-    if not source.startswith("#REDIRECT"): return None
-    match = re.match(r'^#REDIRECT \[\[([^\[\]]*?)(\|[^\[\]]*?)?\]\]', source)
+    if not source[:9].lower() == "#redirect":
+        return None
+    match = re.match(r'^#redirect(\s)?\[\[([^\[\]]*?)(\|[^\[\]]*?)?\]\]',
+                     source, re.IGNORECASE)
     if not match: return None
-    return match.group(1)
+    return match.group(2)
 
 def get_entire_text_from_section(section: dict):
     text = '\n'.join(get_entire_text_from_section(sec)
@@ -84,4 +86,5 @@ def parse_source(source: str) -> dict:
             "references": refs,
             "redirectedTo": redirection}
 
-from .extractor import lookup_from_extracted
+from .extractor import lookup_from_extracted, \
+    load_all_indexes, find_page_from_file # pylint: disable=R0401

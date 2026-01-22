@@ -7,13 +7,12 @@ An efficient extractor for Wikipedia XML dump files that extracts structured con
 
 ## Features
 
-- **Memory Efficient**: Uses streaming XML parsing to handle 10GB+ dump files without memory growth
 - **Parallel Processing**: Multi-core support for faster processing of large datasets
 - **Resumable Processing**: Saves progress and can resume from interrupted extractions
 - **Structured Output**: Preserves Wikipedia's hierarchical structure (sections, tables of contents, infoboxes)
+- **Memory Efficient**: Uses streaming XML parsing to handle 10GB+ dump files without memory growth
 - **Reference Handling**: Deduplicates and renumbers citation references
 - **Redirection Support**: Properly handles Wikipedia redirect pages
-- **Benchmarking Tools**: Built-in performance testing utilities
 
 ## Installation
 
@@ -36,16 +35,16 @@ The package provides a command-line tool `wiki-dump-extractor-json`:
 
 ```bash
 # Parse a Wikipedia XML dump file
-wiki-dump-extractor-json -o output_directory pages-meta-current.xml
-
-# Parse with specific number of worker processes
-wiki-dump-extractor-json -o output_directory --workers 8 pages-meta-current.xml
+wiki-dump-extractor-json -o output_dir pages.xml
 
 # Run a benchmark test
-wiki-dump-extractor-json --benchmark pages-meta-current.xml
+wiki-dump-extractor-json --benchmark pages.xml
 
 # Look up a specific article from extracted data
-wiki-dump-extractor-json --lookup "title" output_directory
+wiki-dump-extractor-json --lookup "title" output_dir
+
+# "python -m" is also available
+python -m wiki_dump_extractor_json ...
 ```
 
 ### Python API
@@ -56,7 +55,7 @@ wiki-dump-extractor-json --lookup "title" output_directory
 from wiki_dump_extractor_json import parse_xml_dump
 
 # Stream parse XML dump file
-with open('enwiki-latest-pages-meta-current.xml', 'rb') as f:
+with open('pages.xml', 'rb') as f:
     for page in parse_xml_dump(f):
         print(f"Page: {page.title}")
         print(f"Timestamp: {page.timestamp}")
@@ -84,8 +83,9 @@ print(f"Subsections: {len(parsed['subSections'])}")
 ```python
 from wiki_dump_extractor_json import lookup_from_extracted
 
+title = input('Input title: ')
 # Look up a specific article from extracted data
-article_data = lookup_from_extracted('output_directory', '1462年')
+article_data = lookup_from_extracted('output_dir', title)
 print(f"Article title: {article_data['title']}")
 print(f"Article sections: {len(article_data['subSections'])}")
 ```

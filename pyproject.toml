@@ -1,6 +1,6 @@
 [project]
 name = "wiki-dump-extractor-json"
-version = "1.0.3"
+version = "1.0.4"
 description = "An efficient Wikipedia XML dump extractor which converts each page to JSON."
 readme = "README.md"
 license = "MIT"
