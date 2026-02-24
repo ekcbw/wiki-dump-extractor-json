@@ -5,7 +5,7 @@ from .dump_xml_parser import parse_xml_dump, WikiPage
 
 __all__ = ["parse_source", "filter_refs", "parse_xml_dump",
            "WikiPage", "lookup_from_extracted"]
-__version__ = "1.0.4"
+__version__ = "1.0.5"
 
 def strip_comments(source: str) -> str:
     return re.sub("<!--.*?-->", "", source)
@@ -18,7 +18,7 @@ def filter_refs(source: str) -> tuple[str, list[str]]:
     seen: set[str] = set()
     name_to_ref: dict[str, str] = {}
     for ref in refs:
-        if ref[0] in seen:continue
+        if ref[0] in seen: continue
         unique_refs.append(ref[0])
         seen.add(ref[0])
         if ref[2]:

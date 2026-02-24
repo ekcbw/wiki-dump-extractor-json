@@ -1,5 +1,7 @@
-import os, re, json, time, hashlib, platform, multiprocessing
+import os, re, time, hashlib, platform, multiprocessing
 from tqdm import tqdm
+try: import ujson as json
+except ImportError: import json
 from . import parse_xml_dump, parse_source, WikiPage, \
               __version__ as parser_version
 
@@ -13,7 +15,7 @@ def parse_and_dump_page(page: WikiPage) -> int:
     parsed["title"] = page.title
     parsed["timestamp"] = page.timestamp
 
-    return page.title, json.dumps(parsed,ensure_ascii=False).encode("utf-8")
+    return page.title, json.dumps(parsed, ensure_ascii=False).encode("utf-8")
 
 def estimate_total_count(xml_path: str) -> int:
     # 快速预估页面总数，不解析xml

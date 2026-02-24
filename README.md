@@ -18,6 +18,7 @@ An efficient extractor for Wikipedia XML dump files that extracts structured con
 
 ```bash
 pip install wiki-dump-extractor-json
+pip install ujson # optional (for better performance)
 ```
 
 ### Dependencies
